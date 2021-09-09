@@ -6,7 +6,9 @@
 	onMount(() => {
 		AOS.init({
 			duration: 500,
-			easing: 'ease-in-out'
+			easing: 'ease-out',
+			once: true,
+			disable: 'mobile'
 		});
 	});
 </script>
@@ -22,25 +24,50 @@
 <style>
 	.intro {
 		display: flex;
+		flex-direction: column-reverse;
 		justify-content: left;
 		align-items: center;
 	}
 	.intro img {
 		display: block;
-		width: clamp(225px, 35%, 608px);
+		width: 100%;
+		max-width: 608px;
 		margin: 0 8rem;
 	}
 
 	.welcome-text {
 		max-width: 45rem;
+		margin-bottom: 2rem;
 	}
 
 	.welcome-text h1 {
-		font-size: 5.5rem;
+		font-size: 4rem;
 		font-weight: bold;
 	}
 
 	.welcome-text p {
-		font-size: 4rem;
+		font-size: 2.5rem;
+	}
+	@media (min-width: 800px) {
+		.intro {
+			flex-direction: row;
+		}
+		.intro img {
+			width: clamp(225px, 35%, 608px);
+			margin: 0 6rem 0 10%;
+		}
+		.welcome-text {
+			margin: 0rem;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.welcome-text h1 {
+			font-size: 5.5rem;
+			font-weight: bold;
+		}
+		.welcome-text p {
+			font-size: 4rem;
+		}
 	}
 </style>

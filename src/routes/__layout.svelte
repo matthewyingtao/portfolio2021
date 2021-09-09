@@ -32,11 +32,17 @@
 		stroke-linejoin="round"
 	/>
 </svg>
-<PageTransition refresh={key}>
-	<slot />
-</PageTransition>
+<main>
+	<PageTransition refresh={key}>
+		<slot />
+	</PageTransition>
+</main>
 
 <style>
+	main {
+		margin: 0 1rem;
+	}
+
 	.scribble {
 		position: absolute;
 		top: 3rem;

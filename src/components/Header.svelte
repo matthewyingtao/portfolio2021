@@ -12,7 +12,9 @@
 </script>
 
 <header>
-	<AnimatedLogo />
+	<a href="/">
+		<AnimatedLogo />
+	</a>
 
 	<nav>
 		{#each routes as route}
@@ -51,6 +53,7 @@
 	.nav-item {
 		margin-left: 1.5rem;
 		position: relative;
+		width: max-content;
 	}
 
 	nav a {

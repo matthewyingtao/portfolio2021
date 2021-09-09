@@ -1,22 +1,19 @@
+<script>
+	import { onMount } from 'svelte';
+	import AOS from 'aos';
+	import 'aos/dist/aos.css';
+
+	onMount(() => {
+		AOS.init({
+			duration: 500,
+			easing: 'ease-in-out'
+		});
+	});
+</script>
+
 <div class="intro">
-	<svg
-		class="scribble"
-		viewBox="0 0 1311 861"
-		preserveAspectRatio="none"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<path
-			opacity=".05"
-			d="M287.346 646.954c166.756 36.417 266.162 19.395 320.813-27.779m0 0c54.337-46.903 64.432-123.613 52.494-207.243m-52.494 207.243C405.616 505.64 178.879 373.898 3 276.978L498.511 3.411m109.648 615.764c431.041 241.619 752.521 400.775 241.013-33.663m-188.519-173.58c-13.448-94.205-54.854-197.193-92.475-276.247m92.475 276.247c50.452 51.379 112.885 109.342 188.519 173.58m-188.519-173.58C448.956 196.348 448.192 96.681 568.178 135.685m0 0C532.932 61.621 501.009 8.564 498.511 3.411m69.667 132.274c82.062 26.675 220.606 118.216 386.781 281.9M498.511 3.411c-.249-.513-.206-.55.156-.086l-.156.086zm350.661 582.101l105.787-167.927m0 0C1063.53 524.526 1183.89 662.261 1308 832.82l-222.41-622.605-130.631 207.37z"
-			stroke="#fff"
-			stroke-width="5"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		/>
-	</svg>
-	<img src="/blobPortrait.webp" alt="blob" />
-	<div class="welcome-text">
+	<img data-aos="fade-up" src="/blobPortrait.webp" alt="blob" />
+	<div data-aos="fade-up" data-aos-delay="150" class="welcome-text">
 		<h1>Hello there!</h1>
 		<p>I'm Matthew Tao, an Auckland-based web developer.</p>
 	</div>
@@ -28,15 +25,6 @@
 		justify-content: left;
 		align-items: center;
 	}
-
-	.scribble {
-		position: absolute;
-		top: 3rem;
-		right: 0;
-		z-index: -1;
-		width: 70%;
-	}
-
 	.intro img {
 		display: block;
 		width: clamp(225px, 35%, 608px);

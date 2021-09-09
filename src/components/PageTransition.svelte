@@ -1,0 +1,10 @@
+<script>
+	import { fly } from 'svelte/transition';
+	export let refresh = '';
+</script>
+
+{#key refresh}
+	<main in:fly={{ x: 50, duration: 750, delay: 800 }} out:fly={{ x: -50, duration: 750 }}>
+		<slot />
+	</main>
+{/key}

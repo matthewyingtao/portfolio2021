@@ -1,6 +1,7 @@
 <script>
+	export let segment;
+
 	import AnimatedLogo from './AnimatedLogo.svelte';
-	import { page } from '$app/stores';
 
 	const routes = [
 		{ href: '/', name: 'Home' },
@@ -17,8 +18,8 @@
 		{#each routes as route}
 			<div
 				class="nav-item"
-				class:current={route.href === $page.path}
-				class:inactive={route.href != $page.path}
+				class:current={route.href === segment}
+				class:inactive={route.href != segment}
 			>
 				<a href={route.href}>{route.name}</a>
 				<svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 13">

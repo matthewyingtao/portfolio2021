@@ -1,20 +1,22 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import AOS from 'aos';
 	import 'aos/dist/aos.css';
 
-	onMount(() => {
+	onMount(async () => {
 		AOS.init({
 			duration: 500,
 			easing: 'ease-out',
-			once: true,
 			disable: 'mobile'
 		});
+		//wait for the page to load before initializing AOS
+		await new Promise((resolve) => setTimeout(resolve, 800));
+		AOS.refresh();
 	});
 </script>
 
 <div class="intro">
-	<img data-aos="fade-up" src="/blobPortrait.webp" alt="blob" />
+	<img data-aos="fade-up" src="/blobPortrait.webp" alt="Matthew Tao" />
 	<div data-aos="fade-up" data-aos-delay="150" class="welcome-text">
 		<h1>Hello there!</h1>
 		<p>I'm Matthew Tao, an Auckland-based web developer.</p>
@@ -32,12 +34,11 @@
 		display: block;
 		width: 100%;
 		max-width: 608px;
-		margin: 0 8rem;
 	}
 
 	.welcome-text {
 		max-width: 45rem;
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 	}
 
 	.welcome-text h1 {
@@ -54,7 +55,7 @@
 		}
 		.intro img {
 			width: clamp(225px, 35%, 608px);
-			margin: 0 6rem 0 10%;
+			margin-right: 6rem;
 		}
 		.welcome-text {
 			margin: 0rem;
@@ -62,6 +63,9 @@
 	}
 
 	@media (min-width: 1200px) {
+		.intro {
+			margin-left: 10%;
+		}
 		.welcome-text h1 {
 			font-size: 5.5rem;
 			font-weight: bold;

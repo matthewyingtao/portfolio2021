@@ -19,7 +19,7 @@
 	<img data-aos="fade-up" src="/blobPortrait.webp" alt="Matthew Tao" />
 	<div data-aos="fade-up" data-aos-delay="150" class="welcome-text">
 		<h1>Hello there!</h1>
-		<p>I'm Matthew Tao, an Auckland-based web developer.</p>
+		<p>I'm Matthew Tao, an Auckland-based Front-End developer.</p>
 	</div>
 </div>
 

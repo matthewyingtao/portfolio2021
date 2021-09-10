@@ -3,7 +3,7 @@
 </script>
 
 <div id="projects">
-	{#each projects.projects as project, i}
+	{#each projects.projects as project}
 		<article class="project">
 			<div class="project-description">
 				<h3>{project.friendlyName}</h3>
@@ -12,10 +12,12 @@
 				</p>
 			</div>
 			<div class="scene">
-				<a class="project-img-wrapper" href="/projects/{project.name}">
-					<div class="project-img-overlay">
-						<p>Read more</p>
-					</div>
+				<a
+					class="project-img-wrapper"
+					href="/projects/{project.name}"
+					aria-label="read more about {project.friendlyName}."
+				>
+					<div class="project-img-overlay"><p>Go to project</p></div>
 					<img class="project-img" src="/projects/{project.img}" alt="" />
 				</a>
 			</div>
@@ -64,7 +66,8 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(-45deg, var(--slate-400) 0%, var(--red-600) 100%);
+		background-color: var(--red-600);
+		background-image: radial-gradient(at bottom right, var(--pink-700), transparent);
 		opacity: 0;
 		transition: opacity 350ms ease;
 		border: 1px solid white;

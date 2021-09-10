@@ -16,8 +16,9 @@
 	--slate-400: hsl(212, 63%, 13%);
 	--slate-200: hsl(212, 19%, 13%);
 	--red-500: #e06666;
-	--red-300-rgb: 148, 30, 30;
 	--red-600: #fa4c4c;
+	--pink-700: #f0ace0;
+	--pink-500: hsl(314, 69%, 60%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -45,7 +46,7 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	color: white;
-	font-size: 24px;
+	font-size: 18px;
 	overflow-x: hidden;
 }
 

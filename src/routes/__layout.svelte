@@ -15,6 +15,11 @@
 	export let key;
 </script>
 
+<svelte:head>
+	<title>Matthew Tao</title>
+	<meta name="description" content="Matthew Tao's personal website." />
+</svelte:head>
+
 <Header segment={key} />
 <svg
 	class="scribble"

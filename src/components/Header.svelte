@@ -12,7 +12,7 @@
 </script>
 
 <header>
-	<a href="/">
+	<a href="/" aria-label="Home">
 		<AnimatedLogo />
 	</a>
 
@@ -82,6 +82,7 @@
 		stroke: none;
 		stroke-linecap: round;
 		stroke-width: 2px;
+		transition: stroke-dashoffset 500ms ease-in-out;
 	}
 
 	.inactive.nav-item:hover .link-underline {
@@ -93,7 +94,7 @@
 	}
 
 	.current a {
-		color: hsl(0, 66%, 80%);
+		color: #aaa;
 	}
 
 	.current .link-underline {

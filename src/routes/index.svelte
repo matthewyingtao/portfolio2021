@@ -5,7 +5,7 @@
 
 	onMount(async () => {
 		AOS.init({
-			duration: 500,
+			duration: 600,
 			easing: 'ease-out',
 			disable: 'mobile'
 		});

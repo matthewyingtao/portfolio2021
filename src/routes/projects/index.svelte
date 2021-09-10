@@ -1,25 +1,25 @@
 <script>
-	import * as projects from '../data/projects.json';
+	import projects from '../../data/projects.json';
 </script>
 
 <div id="projects">
-	{#each projects.projects as project}
-		<div class="project">
+	{#each projects.projects as project, i}
+		<article class="project">
 			<div class="project-description">
-				<h3>{project.name}</h3>
+				<h3>{project.friendlyName}</h3>
 				<p>
 					{project.description}
 				</p>
 			</div>
 			<div class="scene">
-				<a class="project-img-wrapper" href="/">
+				<a class="project-img-wrapper" href="/projects/{project.name}">
 					<div class="project-img-overlay">
-						<p>click to see more</p>
+						<p>Read more</p>
 					</div>
 					<img class="project-img" src="/projects/{project.img}" alt="" />
 				</a>
 			</div>
-		</div>
+		</article>
 	{/each}
 </div>
 
@@ -54,16 +54,6 @@
 		transform-style: preserve-3d;
 	}
 
-	.project-img-wrapper {
-		display: block;
-		transform: rotateX(7deg) rotateY(-10deg);
-		transition: transform 350ms ease;
-	}
-
-	.project-img-wrapper:hover {
-		transform: rotateX(0deg) rotateY(0deg);
-	}
-
 	.project-img-overlay {
 		display: flex;
 		justify-content: center;
@@ -74,14 +64,18 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.5);
+		background: linear-gradient(-45deg, var(--slate-400) 0%, var(--red-600) 100%);
 		opacity: 0;
 		transition: opacity 350ms ease;
+		border: 1px solid white;
 	}
 
 	.project-img-overlay p {
 		font-size: 2.5rem;
+		letter-spacing: 3px;
+		text-transform: uppercase;
 		color: white;
+		border-bottom: 2px solid white;
 	}
 
 	.project-img-wrapper:hover .project-img-overlay {
@@ -100,7 +94,7 @@
 		box-shadow: 1rem 1rem 0 -1rem var(--red-500);
 	}
 
-	@media screen and (min-width: 600px) {
+	@media screen and (min-width: 800px) {
 		.project {
 			flex-direction: row;
 			justify-content: center;
@@ -111,6 +105,15 @@
 		}
 		.project-description {
 			width: 50%;
+			margin-right: 1rem;
+		}
+		.project-img-wrapper {
+			display: block;
+			transform: rotateX(7deg) rotateY(-10deg);
+			transition: transform 350ms ease;
+		}
+		.project-img-wrapper:hover {
+			transform: rotateX(0deg) rotateY(0deg);
 		}
 	}
 </style>

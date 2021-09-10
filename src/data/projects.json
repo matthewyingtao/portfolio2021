@@ -1,17 +1,20 @@
 {
 	"projects": [
 		{
-			"name": "Environ",
+			"name": "environ",
+			"friendlyName": "Environ",
 			"description": "An app that utilises AI to encourage recycling.",
 			"img": "tbag.webp"
 		},
 		{
 			"name": "blogg",
+			"friendlyName": "blogg",
 			"description": "A blog that I made to learn more about developing Flutter apps.",
 			"img": "blogg.webp"
 		},
 		{
-			"name": "Gif Creator",
+			"name": "gifcreator",
+			"friendlyName": "Gif Creator",
 			"description": "A simple web app that allows you to create meme gifs from images or videos.",
 			"img": "gif.webp"
 		}

@@ -1,6 +1,5 @@
 <script>
 	import * as projects from '../data/projects.json';
-	console.log(projects);
 </script>
 
 <div id="projects">
@@ -30,12 +29,12 @@
 		margin: 6rem auto;
 		display: grid;
 		gap: 5rem;
-		transform-style: preserve-3d;
 	}
 
 	.project {
 		display: flex;
 		flex-direction: column;
+		margin-right: 2rem;
 	}
 
 	.project-description {
@@ -51,16 +50,18 @@
 	.scene {
 		position: relative;
 		perspective: 50rem;
+		perspective-origin: 100% 100%;
+		transform-style: preserve-3d;
 	}
 
 	.project-img-wrapper {
 		display: block;
-		transform: rotateY(-10deg);
+		transform: rotateX(7deg) rotateY(-10deg);
 		transition: transform 350ms ease;
 	}
 
 	.project-img-wrapper:hover {
-		transform: rotateY(0deg);
+		transform: rotateX(0deg) rotateY(0deg);
 	}
 
 	.project-img-overlay {
@@ -92,6 +93,7 @@
 		width: 100%;
 		box-shadow: 2rem 2rem 0 -1rem var(--red-500);
 		transition: box-shadow 150ms ease;
+		border: 1px solid white;
 	}
 
 	.project-img-wrapper:active .project-img {

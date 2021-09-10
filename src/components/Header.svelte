@@ -57,6 +57,7 @@
 	}
 
 	nav a {
+		font-family: 'caveat', cursive;
 		font-size: 2rem;
 		color: #fff;
 		text-decoration: none;

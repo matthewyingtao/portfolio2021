@@ -1,5 +1,5 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import AOS from 'aos';
 	import 'aos/dist/aos.css';
 
@@ -47,6 +47,7 @@
 	}
 
 	.welcome-text p {
+		font-family: 'caveat', cursive;
 		font-size: 2.5rem;
 	}
 	@media (min-width: 800px) {

@@ -1,28 +1,66 @@
 <script>
+	import PageTransition from '../../components/PageTransition.svelte';
 	import projects from '../../data/projects.json';
+
+	let showPersonal = true;
 </script>
 
 <div id="projects">
-	{#each projects.projects as project}
-		<article class="project">
-			<div class="project-description">
-				<h3>{project.friendlyName}</h3>
-				<p>
-					{project.description}
-				</p>
-			</div>
-			<div class="scene">
-				<a
-					class="project-img-wrapper"
-					href="/projects/{project.name}"
-					aria-label="read more about {project.friendlyName}."
-				>
-					<div class="project-img-overlay"><p>Go to project</p></div>
-					<img class="project-img" src="/projects/{project.img}" alt="" />
-				</a>
-			</div>
-		</article>
-	{/each}
+	<div class="heading">
+		<h1>Projects</h1>
+		<div class="chip-container">
+			<button class:active={showPersonal} class="chip" on:click={() => (showPersonal = true)}
+				>Personal</button
+			>
+			<button class:active={!showPersonal} class="chip" on:click={() => (showPersonal = false)}
+				>Collaborative</button
+			>
+		</div>
+	</div>
+
+	<PageTransition refresh={showPersonal}>
+		{#if showPersonal}
+			{#each projects.personal as project}
+				<article class="project">
+					<div class="project-description">
+						<h3>{project.friendlyName}</h3>
+						<p>{project.description}</p>
+					</div>
+					<a
+						class="project-img-wrapper"
+						href="/projects/{project.name}"
+						aria-label="read more about {project.friendlyName}."
+					>
+						<div class="project-img-overlay"><p>Go to project</p></div>
+						<img class="project-img" src="/projects/{project.img}" alt="" />
+						<div class="project-img-shadow" />
+					</a>
+				</article>
+			{/each}
+		{:else}
+			{#each projects.collaborative as project}
+				<article class="project">
+					<div class="project-description">
+						<h3>{project.friendlyName}</h3>
+						<p>
+							{project.description}
+						</p>
+					</div>
+					<a
+						class="project-img-wrapper"
+						href={project.link}
+						aria-label="go to the website."
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="project-img-overlay"><p>View Website</p></div>
+						<img class="project-img" src="/projects/{project.img}" alt="" />
+						<div class="project-img-shadow" />
+					</a>
+				</article>
+			{/each}
+		{/if}
+	</PageTransition>
 </div>
 
 <style>
@@ -33,27 +71,115 @@
 		gap: 5rem;
 	}
 
+	h1 {
+		font-family: 'Raleway', sans-serif;
+		font-weight: bold;
+	}
+
+	.heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.chip-container {
+		display: flex;
+	}
+
+	.chip {
+		position: relative;
+		background: transparent;
+		border: 2px solid #fff;
+		color: #fff;
+		padding: 0.5rem 1rem;
+		border-radius: 999px;
+		margin-left: 1rem;
+		overflow: hidden;
+	}
+
+	.chip::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to right, var(--red-500), var(--red-600));
+		opacity: 0;
+		transition: opacity 350ms ease-out;
+	}
+
+	.chip:hover::before {
+		opacity: 0.5;
+	}
+
+	.chip.active::before {
+		opacity: 1;
+	}
+
 	.project {
 		display: flex;
 		flex-direction: column;
-		margin-right: 2rem;
+		isolation: isolate;
 	}
 
 	.project-description {
+		--border-style: 2px solid var(--red-500);
+		position: relative;
 		max-width: 55ch;
 	}
 
-	.project-description h3 {
-		font-size: 2.5rem;
-		font-weight: bold;
-		margin-bottom: 1rem;
+	/* border left and bottom of div */
+	.project-description::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 3rem;
+		border-left: var(--border-style);
+		border-bottom: var(--border-style);
+		border-bottom-left-radius: 1rem;
 	}
 
-	.scene {
+	/* border top */
+	.project-description h3 {
+		border-top: var(--border-style);
+		font-size: 2.5rem;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+		width: max-content;
+		position: relative;
+		padding: 0.5rem 1rem 0.5rem 1.5rem;
+	}
+
+	/* border top, right and bottom of heading */
+	.project-description h3::after {
+		content: '';
+		position: absolute;
+		top: -2px;
+		width: 1rem;
+		margin-left: 1rem;
+		height: 100%;
+		border-top: var(--border-style);
+		border-right: var(--border-style);
+		border-bottom: var(--border-style);
+		border-top-right-radius: 999px;
+	}
+
+	.project-description p {
+		padding-left: 1.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.project-img-wrapper {
+		--border-radius: 0.5rem;
 		position: relative;
 		perspective: 50rem;
-		perspective-origin: 100% 100%;
+		outline: 1px solid transparent;
 		transform-style: preserve-3d;
+		margin-right: 5rem;
 	}
 
 	.project-img-overlay {
@@ -66,11 +192,15 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: var(--red-600);
-		background-image: radial-gradient(at bottom right, var(--pink-700), transparent);
+		background: linear-gradient(
+			-45deg,
+			rgba(var(--pink-700-rgb), 0.7),
+			rgba(var(--red-600-rgb), 0.5)
+		);
 		opacity: 0;
 		transition: opacity 350ms ease;
-		border: 1px solid white;
+		border: 2px solid white;
+		border-radius: var(--border-radius);
 	}
 
 	.project-img-overlay p {
@@ -86,15 +216,30 @@
 	}
 
 	.project-img {
+		position: relative;
 		display: block;
 		width: 100%;
-		box-shadow: 2rem 2rem 0 -1rem var(--red-500);
 		transition: box-shadow 150ms ease;
-		border: 1px solid white;
+		border: 2px solid white;
+		border-radius: var(--border-radius);
 	}
 
-	.project-img-wrapper:active .project-img {
-		box-shadow: 1rem 1rem 0 -1rem var(--red-500);
+	.project-img-shadow {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		border-radius: var(--border-radius);
+		background: linear-gradient(to top, rgba(var(--red-600-rgb), 0.7), var(--red-500));
+		transform: translate(2rem, 2rem);
+		transition: transform 350ms ease-out, filter 350ms ease-out;
+	}
+
+	.project-img-wrapper:active .project-img-shadow {
+		transform: translate(0.5rem, 0.5rem);
 	}
 
 	@media screen and (min-width: 800px) {
@@ -102,8 +247,15 @@
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
+			min-height: 70vh;
 		}
-		.scene {
+		.project:nth-of-type(2n) {
+			flex-direction: row-reverse;
+		}
+		.project:nth-of-type(2n) .project-img-wrapper {
+			transform: perspective(40rem) rotateX(7deg) rotateY(10deg);
+		}
+		.project-img-wrapper {
 			width: clamp(225px, 50%, 608px);
 		}
 		.project-description {
@@ -112,11 +264,11 @@
 		}
 		.project-img-wrapper {
 			display: block;
-			transform: rotateX(7deg) rotateY(-10deg);
+			transform: perspective(40rem) rotateX(7deg) rotateY(-10deg);
 			transition: transform 350ms ease;
 		}
-		.project-img-wrapper:hover {
-			transform: rotateX(0deg) rotateY(0deg);
+		.project-img-wrapper.project-img-wrapper:hover {
+			transform: perspective(40rem) rotateX(7deg) rotateY(0deg);
 		}
 	}
 </style>

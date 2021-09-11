@@ -1,5 +1,5 @@
 {
-	"projects": [
+	"personal": [
 		{
 			"name": "environ",
 			"friendlyName": "Environ",
@@ -17,6 +17,22 @@
 			"friendlyName": "Gif Creator",
 			"description": "A simple web app that allows you to create meme gifs from images or videos.",
 			"img": "gif.webp"
+		}
+	],
+	"collaborative": [
+		{
+			"name": "neneAnniversary",
+			"friendlyName": "Nene's Anniversary Website",
+			"description": "A website made in collaboration with the Nene Productions Discord server to celebrate VTuber Momosuzu Nene's 1st anniversary.",
+			"img": "nene.webp",
+			"link": "https://nepolabo.fans/nene"
+		},
+		{
+			"name": "polkaAnniversary",
+			"friendlyName": "Polka's Anniversary Website",
+			"description": "A website made in collaboration with the Polka's Hologram Circus Discord.\nI helped with the CSS in the last stages of the project.",
+			"img": "polka.webp",
+			"link": "https://nepolabo.fans/polka"
 		}
 	]
 }

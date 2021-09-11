@@ -72,7 +72,7 @@
 		width: calc(100% + 1rem);
 		height: 1rem;
 		overflow: visible;
-		transition: bottom 350ms ease-in-out;
+		transition: transform 350ms ease-in-out;
 		pointer-events: none;
 	}
 
@@ -90,7 +90,7 @@
 	}
 
 	.current svg {
-		bottom: -0.75rem;
+		transform: translateY(-0.25rem);
 	}
 
 	.current a {

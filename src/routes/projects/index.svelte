@@ -134,7 +134,6 @@
 	.project {
 		display: flex;
 		flex-direction: column;
-		isolation: isolate;
 		margin-bottom: 6rem;
 	}
 
@@ -195,6 +194,7 @@
 		outline: 1px solid transparent;
 		transform-style: preserve-3d;
 		margin-right: 1rem;
+		isolation: isolate;
 	}
 
 	.project-img-overlay {

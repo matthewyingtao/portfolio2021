@@ -6,13 +6,12 @@
 	const routes = [
 		{ href: '/', name: 'Home' },
 		{ href: '/projects', name: 'Projects' },
-		{ href: '/about', name: 'About Me' },
 		{ href: '/contact', name: 'Contact' }
 	];
 </script>
 
 <header>
-	<a href="/" aria-label="Home">
+	<a class="logo" href="/" aria-label="Home">
 		<AnimatedLogo />
 	</a>
 
@@ -41,17 +40,23 @@
 	header {
 		width: 100%;
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: flex-start;
-		padding: 2rem;
+		padding: 2rem 2rem 0 2rem;
+	}
+
+	.logo {
+		margin-bottom: 2rem;
 	}
 
 	nav {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(3, max-content);
+		grid-gap: 1.5rem;
 	}
 
 	.nav-item {
-		margin-left: 1.5rem;
 		position: relative;
 		width: max-content;
 	}
@@ -94,7 +99,7 @@
 	}
 
 	.current a {
-		color: #aaa;
+		color: var(--blue-700);
 	}
 
 	.current .link-underline {

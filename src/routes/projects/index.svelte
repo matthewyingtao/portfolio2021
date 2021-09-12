@@ -65,24 +65,30 @@
 
 <style>
 	#projects {
-		max-width: 1440px;
-		margin: 6rem auto;
+		max-width: 1140px;
+		margin: 2rem auto 6rem auto;
 		gap: 5rem;
 	}
 
 	h1 {
 		font-family: 'Raleway', sans-serif;
 		font-weight: bold;
+		margin-bottom: 1rem;
 	}
 
 	.heading {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 1rem;
 	}
 
 	.chip-container {
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(2, max-content);
+		gap: 1rem;
+		margin-bottom: 1rem;
 	}
 
 	.chip {
@@ -92,28 +98,36 @@
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border-radius: 999px;
-		margin-left: 1rem;
 		overflow: hidden;
 	}
 
-	.chip::before {
+	.chip:before,
+	.chip:after {
 		content: '';
 		position: absolute;
-		z-index: -1;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: linear-gradient(to right, var(--red-500), var(--red-600));
 		opacity: 0;
 		transition: opacity 350ms ease-out;
 	}
 
-	.chip:hover::before {
-		opacity: 0.5;
+	.chip::before {
+		z-index: -2;
+		background: linear-gradient(to right, var(--blue-500), var(--blue-600));
 	}
 
-	.chip.active::before {
+	.chip::after {
+		z-index: -1;
+		background: linear-gradient(to right, var(--red-500), var(--red-600));
+	}
+
+	.chip:hover::before {
+		opacity: 1;
+	}
+
+	.chip.active::after {
 		opacity: 1;
 	}
 
@@ -121,12 +135,14 @@
 		display: flex;
 		flex-direction: column;
 		isolation: isolate;
+		margin-bottom: 6rem;
 	}
 
 	.project-description {
-		--border-style: 2px solid var(--red-500);
+		--border-style: 2px solid var(--blue-500);
 		position: relative;
 		max-width: 55ch;
+		margin-bottom: 2rem;
 	}
 
 	/* border left and bottom of div */
@@ -178,7 +194,7 @@
 		perspective: 50rem;
 		outline: 1px solid transparent;
 		transform-style: preserve-3d;
-		margin-right: 5rem;
+		margin-right: 1rem;
 	}
 
 	.project-img-overlay {
@@ -192,9 +208,9 @@
 		width: 100%;
 		height: 100%;
 		background: linear-gradient(
-			-45deg,
-			rgba(var(--pink-700-rgb), 0.7),
-			rgba(var(--red-600-rgb), 0.5)
+			to bottom,
+			rgba(var(--slate-400-rgb), 0.5),
+			rgba(var(--blue-500-rgb), 0.7)
 		);
 		opacity: 0;
 		transition: opacity 350ms ease;
@@ -232,13 +248,17 @@
 		height: 100%;
 		z-index: -1;
 		border-radius: var(--border-radius);
-		background: linear-gradient(to top, rgba(var(--red-600-rgb), 0.7), var(--red-500));
-		transform: translate(2rem, 2rem);
-		transition: transform 350ms ease-out, filter 350ms ease-out;
+		background: linear-gradient(
+			to bottom,
+			rgba(var(--blue-600-rgb), 0),
+			rgba(var(--blue-500-rgb), 0.4)
+		);
+		transform: translate(1rem, 1rem);
+		transition: transform 150ms ease-out;
 	}
 
 	.project-img-wrapper:active .project-img-shadow {
-		transform: translate(0.5rem, 0.5rem);
+		transform: translate(0, 0);
 	}
 
 	@media screen and (min-width: 800px) {
@@ -255,19 +275,33 @@
 			transform: perspective(40rem) rotateX(7deg) rotateY(10deg);
 		}
 		.project-img-wrapper {
-			width: clamp(225px, 50%, 608px);
-		}
-		.project-description {
-			width: 50%;
-			margin-right: 1rem;
-		}
-		.project-img-wrapper {
 			display: block;
 			transform: perspective(40rem) rotateX(7deg) rotateY(-10deg);
 			transition: transform 350ms ease;
+			width: clamp(225px, 50%, 608px);
+			margin-left: 2rem;
+			margin-right: 3rem;
 		}
+
+		.project:nth-of-type(2n) .project-img-wrapper {
+			margin-right: 2rem;
+			margin-left: 4rem;
+		}
+
+		.project-description {
+			width: 50%;
+		}
+
 		.project-img-wrapper.project-img-wrapper:hover {
 			transform: perspective(40rem) rotateX(7deg) rotateY(0deg);
+		}
+
+		.project:nth-of-type(2n) .project-img-shadow {
+			transform: translate(-1rem, 1rem);
+		}
+
+		.project:nth-of-type(2n) .project-img-wrapper:active .project-img-shadow {
+			transform: translate(0rem, 0rem);
 		}
 	}
 </style>

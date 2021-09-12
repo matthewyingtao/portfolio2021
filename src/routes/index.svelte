@@ -29,6 +29,7 @@
 		flex-direction: column-reverse;
 		justify-content: left;
 		align-items: center;
+		margin-top: 2rem;
 	}
 	.intro img {
 		display: block;

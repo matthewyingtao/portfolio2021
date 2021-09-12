@@ -3,7 +3,6 @@
 
 	export async function load(ctx) {
 		let slug = ctx.page.params.slug;
-		// return the project with the name of the project in the object
 		let project = projects.personal.find((project) => project.name === slug);
 		return { props: { project } };
 	}
@@ -23,18 +22,15 @@
 
 <style>
 	.container {
-		margin: 6rem auto;
+		margin: 2rem auto 6rem auto;
+		max-width: 1140px;
 	}
 
 	.project-img {
 		display: block;
-		max-width: 1440px;
-		height: auto;
-		margin: 0 auto;
 	}
 
 	article {
-		max-width: 65rem;
 		color: white;
 		border-radius: 1rem;
 		padding: 1rem;

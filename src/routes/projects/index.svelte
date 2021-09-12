@@ -9,12 +9,12 @@
 	<div class="heading">
 		<h1>Projects</h1>
 		<div class="chip-container">
-			<button class:active={showPersonal} class="chip" on:click={() => (showPersonal = true)}
-				>Personal</button
-			>
-			<button class:active={!showPersonal} class="chip" on:click={() => (showPersonal = false)}
-				>Collaborative</button
-			>
+			<button class:active={showPersonal} class="chip" on:click={() => (showPersonal = true)}>
+				Personal
+			</button>
+			<button class:active={!showPersonal} class="chip" on:click={() => (showPersonal = false)}>
+				Collaborative
+			</button>
 		</div>
 	</div>
 

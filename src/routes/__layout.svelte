@@ -46,6 +46,7 @@
 <style>
 	main {
 		margin: 0 1rem;
+		display: grid;
 	}
 
 	.scribble {

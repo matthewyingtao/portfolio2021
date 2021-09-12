@@ -67,7 +67,6 @@
 	#projects {
 		max-width: 1440px;
 		margin: 6rem auto;
-		display: grid;
 		gap: 5rem;
 	}
 

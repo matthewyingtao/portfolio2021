@@ -1,8 +1,23 @@
 <script>
+	import { onMount } from 'svelte';
+	import AOS from 'aos';
+	import 'aos/dist/aos.css';
 	import PageTransition from '../../components/PageTransition.svelte';
 	import projects from '../../data/projects.json';
 
 	let showPersonal = true;
+
+	onMount(async () => {
+		AOS.init({
+			duration: 600,
+			easing: 'ease-out',
+			disable: 'mobile',
+			once: true
+		});
+		//wait for the page to load before initializing AOS
+		await new Promise((resolve) => setTimeout(resolve, 800));
+		AOS.refresh();
+	});
 </script>
 
 <div id="projects">
@@ -21,7 +36,7 @@
 	<PageTransition refresh={showPersonal}>
 		{#if showPersonal}
 			{#each projects.personal as project}
-				<article class="project">
+				<article data-aos="fade-up" class="project">
 					<div class="project-description">
 						<h3>{project.friendlyName}</h3>
 						<p>{project.description}</p>
@@ -39,7 +54,7 @@
 			{/each}
 		{:else}
 			{#each projects.collaborative as project}
-				<article class="project">
+				<article data-aos="fade-up" class="project">
 					<div class="project-description">
 						<h3>{project.friendlyName}</h3>
 						<p>
@@ -120,7 +135,7 @@
 
 	.chip::after {
 		z-index: -1;
-		background: linear-gradient(to right, var(--red-500), var(--red-600));
+		background: linear-gradient(to right, var(--red-400), var(--red-500));
 	}
 
 	.chip:hover::before {

@@ -7,7 +7,8 @@
 		AOS.init({
 			duration: 600,
 			easing: 'ease-out',
-			disable: 'mobile'
+			disable: 'mobile',
+			once: true
 		});
 		//wait for the page to load before initializing AOS
 		await new Promise((resolve) => setTimeout(resolve, 800));
